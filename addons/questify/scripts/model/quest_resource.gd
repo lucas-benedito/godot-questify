@@ -96,7 +96,7 @@ func get_active_objectives() -> Array[QuestObjective]:
 	var objectives: Array[QuestObjective] = []
 	for node in nodes:
 		if node is QuestObjective and node.get_active():
-			objectives.append(node)
+			objectives.append(node as QuestObjective)
 	return objectives
 
 
@@ -104,7 +104,7 @@ func get_completed_objectives() -> Array[QuestObjective]:
 	var objectives: Array[QuestObjective] = []
 	for node in nodes:
 		if node is QuestObjective and node.get_completed():
-			objectives.append(node)
+			objectives.append(node as QuestObjective)
 	return objectives
 
 

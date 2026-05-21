@@ -113,23 +113,23 @@ func _deserialize_resource(quest_resource: QuestResource) -> void:
 
 func _get_graph_node(node: QuestNode) -> QuestGraphNode:
 	if node is QuestAnyCondition:
-		return QuestAnyConditionNodeScene.instantiate()
+		return QuestAnyConditionNodeScene.instantiate() as QuestGraphNode
 	elif node is QuestAnyPrevious:
-		return QuestAnyPreviousNodeScene.instantiate()
+		return QuestAnyPreviousNodeScene.instantiate() as QuestGraphNode
 	elif node is QuestCondition:
-		return QuestConditionNodeScene.instantiate()
+		return QuestConditionNodeScene.instantiate() as QuestGraphNode
 	elif node is QuestConditionalBranch:
-		return QuestConditionalBranchNodeScene.instantiate()
+		return QuestConditionalBranchNodeScene.instantiate() as QuestGraphNode
 	elif node is QuestEnd:
-		return QuestEndNodeScene.instantiate()
+		return QuestEndNodeScene.instantiate() as QuestGraphNode
 	elif node is QuestExclusiveBranchConnector:
-		return QuestExclusiveBranchConnectorNodeScene.instantiate()
+		return QuestExclusiveBranchConnectorNodeScene.instantiate() as QuestGraphNode
 	elif node is QuestNotCondition:
-		return QuestNotConditionNodeScene.instantiate()
+		return QuestNotConditionNodeScene.instantiate() as QuestGraphNode
 	elif node is QuestObjective:
-		return QuestObjectiveNodeScene.instantiate()
+		return QuestObjectiveNodeScene.instantiate() as QuestGraphNode
 	elif node is QuestStart:
-		return QuestStartNodeScene.instantiate()
+		return QuestStartNodeScene.instantiate() as QuestGraphNode
 	return null
 	
 	
