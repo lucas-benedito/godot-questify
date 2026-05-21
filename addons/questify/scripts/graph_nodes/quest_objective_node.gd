@@ -12,8 +12,7 @@ var optional: bool
 
 
 func _get_model() -> QuestNode:
-	var obj: QuestNode = QuestObjective.new()
-	return obj
+	return QuestObjective.new()
 
 
 func _set_model_properties(node: QuestNode) -> void:
