@@ -16,7 +16,7 @@ func _ready() -> void:
 
 
 func get_model() -> QuestNode:
-	var node := _get_model()
+	var node: QuestNode = _get_model()
 	node.id = id
 	node.graph_editor_position = position_offset
 	if not size.is_zero_approx():
