@@ -2,5 +2,5 @@
 class_name QuestConditionalBranchNode extends QuestGraphNode
 
 
-func _get_model() -> QuestNode:
+func _get_model():
 	return QuestConditionalBranch.new()

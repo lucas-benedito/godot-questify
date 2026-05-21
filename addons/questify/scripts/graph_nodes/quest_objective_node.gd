@@ -11,7 +11,7 @@ var optional: bool
 @export var metadata_editor: MetadataEditor
 
 
-func _get_model() -> QuestNode:
+func _get_model():
 	return QuestObjective.new()
 
 

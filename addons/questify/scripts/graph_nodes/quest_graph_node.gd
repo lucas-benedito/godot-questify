@@ -34,7 +34,7 @@ func load_model(node: QuestNode) -> void:
 	_get_model_properties(node)
 
 
-func _get_model() -> QuestNode:
+func _get_model():
 	return null
 
 

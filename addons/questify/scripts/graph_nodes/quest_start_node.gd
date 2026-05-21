@@ -11,7 +11,7 @@ var quest_description: String
 @export var metadata_editor: MetadataEditor
 
 
-func _get_model() -> QuestNode:
+func _get_model():
 	return QuestStart.new()
 
 

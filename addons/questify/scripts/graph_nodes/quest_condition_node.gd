@@ -12,7 +12,7 @@ var value: Variant
 @export var meta_input: VariantInput
 
 
-func _get_model() -> QuestNode:
+func _get_model():
 	return QuestCondition.new()
 
 

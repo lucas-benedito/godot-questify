@@ -2,6 +2,6 @@
 class_name QuestAnyPreviousNode extends QuestGraphNode
 
 
-func _get_model() -> QuestNode:
+func _get_model():
 	return QuestAnyPrevious.new()
 	
