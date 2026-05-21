@@ -94,20 +94,20 @@ func update() -> void:
 
 func get_active_objectives() -> Array[QuestObjective]:
 	var objectives: Array[QuestObjective] = []
-	for node in nodes:
-		if node is QuestObjective:
-			var obj := node as QuestObjective
-			if obj != null and obj.get_active():
+	for untyped_node in (nodes as Array):
+		if untyped_node is QuestObjective:
+			var obj: QuestObjective = untyped_node
+			if obj.get_active():
 				objectives.append(obj)
 	return objectives
 
 
 func get_completed_objectives() -> Array[QuestObjective]:
 	var objectives: Array[QuestObjective] = []
-	for node in nodes:
-		if node is QuestObjective:
-			var obj := node as QuestObjective
-			if obj != null and obj.get_completed():
+	for untyped_node in (nodes as Array):
+		if untyped_node is QuestObjective:
+			var obj: QuestObjective = untyped_node
+			if obj.get_completed():
 				objectives.append(obj)
 	return objectives
 
@@ -195,7 +195,7 @@ func deserialize(data: Dictionary) -> void:
 
 
 func _initialize() -> void:
-	for node in nodes:
-		node.set_graph(self)
-		if node is QuestStart:
-			start_node = node as QuestStart
+	for untyped_node in (nodes as Array):
+		untyped_node.set_graph(self)
+		if untyped_node is QuestStart:
+			start_node = untyped_node

@@ -19,7 +19,7 @@ var conditions: Array[QuestNode]:
 var is_exclusive: bool:
 	get:
 		return _graph.get_next_nodes(self).any(
-			func(node: QuestNode):
+			func(node):
 				return node is QuestExclusiveBranchConnector or node is QuestAnyPrevious
 		)
 

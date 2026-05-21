@@ -111,7 +111,7 @@ func _deserialize_resource(quest_resource: QuestResource) -> void:
 		connect_node(model_to_graph_node_map[edge.from].name, 0, model_to_graph_node_map[edge.to].name, edge.edge_type)
 
 
-func _get_graph_node(node: QuestNode) -> QuestGraphNode:
+func _get_graph_node(node) -> QuestGraphNode:
 	if node is QuestAnyCondition:
 		return QuestAnyConditionNodeScene.instantiate() as QuestGraphNode
 	elif node is QuestAnyPrevious:
