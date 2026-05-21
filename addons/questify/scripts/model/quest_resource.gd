@@ -3,6 +3,12 @@
 class_name QuestResource extends Resource
 
 
+enum Availability {
+	LOCKED,    ## Prerequisites not met; hidden or greyed out in journal
+	AVAILABLE, ## Prerequisites met; player can accept
+}
+
+
 @export var nodes: Array[QuestNode] = []
 @export var edges: Array[QuestEdge] = []
 
@@ -13,12 +19,23 @@ var name: String:
 var description: String:
 	get: return start_node.description
 
+var quest_id: String:
+	get: return start_node.quest_id if start_node else ""
+
+var quest_giver_id: String:
+	get: return start_node.quest_giver_id if start_node else ""
+
+var quest_resolver_id: String:
+	get: return start_node.quest_resolver_id if start_node else ""
+
 var start_node: QuestStart
 
 var started: bool:
 	get: return start_node.active
 
 var completed: bool = false
+var failed: bool = false
+var availability: Availability = Availability.LOCKED
 var is_instance := false
 var params: Dictionary = {}
 
@@ -125,6 +142,18 @@ func request_query(type: String, key: String, value: Variant, requester: QuestCo
 	Questify.condition_query_requested.emit(type, key, value, requester)
 
 
+func make_available() -> void:
+	if availability == Availability.LOCKED:
+		availability = Availability.AVAILABLE
+		Questify.quest_available.emit(self)
+
+
+func fail_quest() -> void:
+	if not completed and not failed:
+		failed = true
+		Questify.quest_failed.emit(self)
+
+
 func complete_quest() -> void:
 	completed = true
 	Questify.quest_completed.emit(self)
@@ -138,6 +167,8 @@ func notify_active_objectives() -> void:
 func serialize() -> Dictionary:
 	return {
 		completed = completed,
+		failed = failed,
+		availability = availability,
 		nodes = nodes.map(func(node: QuestNode): return node.serialize()),
 		params = params,
 	}
@@ -148,6 +179,8 @@ func deserialize(data: Dictionary) -> void:
 		printerr("Quest must be instantiated to be deserialized. Use instantiate().")
 		return
 	completed = data.completed
+	failed = data.get("failed", false)
+	availability = data.get("availability", Availability.LOCKED)
 	params = data.params if data.has("params") else {}
 	var node_map := {}
 	for node in nodes:

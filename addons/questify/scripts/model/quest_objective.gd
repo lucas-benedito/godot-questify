@@ -2,6 +2,10 @@ class_name QuestObjective extends QuestNode
 
 
 @export var description: String
+## Map location marker ID for this objective (e.g. "ironhold_bridge", "confluence_market").
+@export var location_id: String = ""
+## NPC associated with completing this objective. Empty = no NPC requirement.
+@export var npc_id: String = ""
 
 
 var _has_notified: bool = false
